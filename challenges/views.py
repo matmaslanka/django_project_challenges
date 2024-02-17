@@ -1,20 +1,21 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import Http404, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
+
 
 monthly_challenges = {
     'january': 'Eat no meat for the entire month!',
     'february': 'Walk for at least 20 minutes of walk every day!',
-    'march': 'Learn Django for at least 20 minutes every day!',
-    'april': 'Eat no meat for the entire month!',
-    'may': 'Walk for at least 20 minutes of walk every day!',
-    'june': 'Learn Django for at least 20 minutes every day!',
-    'july': 'Eat no meat for the entire month!',
-    'august': 'Walk for at least 20 minutes of walk every day!',
-    'september': 'Learn Django for at least 20 minutes every day!',
-    'october': 'Eat no meat for the entire month!',
-    'november': 'Walk for at least 20 minutes of walk every day!',
-    'december': 'Learn Django for at least 20 minutes every day!'
+    'march': 'Learn a new recipe each week and cook it!',
+    'april': 'Practice meditation for at least 10 minutes every day!',
+    'may': 'Read a book outside of your usual genre!',
+    'june': 'Start a journal and write in it daily!',
+    'july': 'Learn a new language for at least 15 minutes every day!',
+    'august': 'Try a new hobby or activity!',
+    'september': 'Exercise for at least 30 minutes every day!',
+    'october': 'Cut out processed sugar from your diet!',
+    'november': 'Express gratitude by writing down three things you are thankful for each day!',
+    'december': None
 }
 
 # Create your views here.
@@ -48,4 +49,4 @@ def monthly_challenge(request, month):
             'text': challenge_text,
         })
     except:
-        return HttpResponseNotFound('<h1>This month is not supported!</h1>')
+        raise Http404()
